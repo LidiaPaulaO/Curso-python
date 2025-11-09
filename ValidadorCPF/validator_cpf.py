@@ -32,7 +32,7 @@ def validate_cpf():
     if not calc_check_digit(cpf):
         print("Erro: CPF inválido! Dígitos verificadores incorretos.\n")
     else:
-        print("✅ CPF válido (formato correto)!\n")
+        print("CPF válido!\n")
 
 def calc_check_digit(cpf):
     first_sum = sum(int(cpf[i]) * (10 - i) for i in range(9))

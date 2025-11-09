@@ -1,4 +1,4 @@
-from  validatorCPF import *
+from  validator_cpf import *
 def main():
     while True:
         clear_screen()
