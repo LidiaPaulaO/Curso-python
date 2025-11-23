@@ -1,4 +1,4 @@
-from CalculadoraGorjeto import *
+from tip_calculator import *
 
 def main():
     name_program()
