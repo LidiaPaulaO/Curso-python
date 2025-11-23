@@ -1,46 +1,41 @@
-
-
 class Book:
-    _all_books = []
-    def __init__(self,_title: str, _author: str, _publication_year: int, _available: bool = True):
-        if not isinstance(_title,str ) or not _title.strip():
+    def __init__(self, title: str, author: str, publication_year: int, available: bool = True):
+        if not isinstance(title, str) or not title.strip():
             raise ValueError("Title cannot be empty")
-        
-        if not isinstance(_author,str) or not _author.strip():
+        if not isinstance(author, str) or not author.strip():
             raise ValueError("Author cannot be empty")
-        
-        if not isinstance(_publication_year, int) or _publication_year <= 0:
-            raise ValueError("Publication year must be a number greater than 0")
-        
-        if not isinstance(_available,bool):
+        if not isinstance(publication_year, int) or publication_year <= 0:
+            raise ValueError("Publication year must be a positive integer")
+        if not isinstance(available, bool):
             raise ValueError("Available must be a boolean value")
-        
-        
-        self._title = _title.title()
-        self._author = _author.title()
-        self._publication_year = _publication_year
-        self._available = _available
-        Book._all_books.append(self)
-        
-    def __str__(self) -> str:
-        status = "Avaliable" if self._available else "Unavailable"
-        return f"Book: {self._title} | Author: {self._author} | Publication Year: {self._publication_year} | Status: {status}"
 
-    # getters
+        self._title = title.title()
+        self._author = author.title()
+        self._publication_year = publication_year
+        self._available = available
+
+    def __str__(self) -> str:
+        status = "Available" if self._available else "Unavailable"
+        return f"{self._title} | {self._author} | {self._publication_year} | {status}"
+
+    # Getters
     @property
-    def title(self) -> str:       
-        return self._title   
+    def title(self) -> str:
+        return self._title
+
     @property
     def author(self) -> str:
         return self._author
+
     @property
-    def  publication_year(self) -> int:
+    def publication_year(self) -> int:
         return self._publication_year
+
     @property
     def available(self) -> bool:
         return self._available
-    
-    # setters
+
+    # Setters
     @title.setter
     def title(self, new_title):
         if not isinstance(new_title, str) or not new_title.strip():
@@ -56,7 +51,7 @@ class Book:
     @publication_year.setter
     def publication_year(self, new_year):
         if not isinstance(new_year, int) or new_year <= 0:
-            raise ValueError("Publication year must be a number greater than 0")
+            raise ValueError("Publication year must be a positive integer")
         self._publication_year = new_year
 
     @available.setter
@@ -64,15 +59,14 @@ class Book:
         if not isinstance(new_status, bool):
             raise ValueError("Available must be a boolean value")
         self._available = new_status
-    
+
+    # Methods
     def borrow(self):
         if not self._available:
-            raise Exception(f"The book '{self.title}' is already borrowed.")
+            raise Exception(f"The book '{self._title}' is already borrowed.")
         self._available = False
 
     def return_book(self):
         if self._available:
-            raise Exception(f"The book '{self.title}' is already available.")
+            raise Exception(f"The book '{self._title}' is already available.")
         self._available = True
-
-    
