@@ -29,6 +29,6 @@ class Avaliacao:
 
     def _validar_nota(self, nota: int) -> int:
         """Garante que a nota seja um número entre 0 e 10."""
-        if not (0 <= nota <= 10):
+        if not (0 <= nota <= 5):
             raise ValueError("A nota deve estar entre 0 e 10.")
         return nota

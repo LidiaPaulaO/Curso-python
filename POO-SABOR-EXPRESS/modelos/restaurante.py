@@ -23,7 +23,7 @@ class Restaurante:
     # Encapsulamento (propriedades)
     @property
     def ativo(self) -> str:
-        """Retorna o status do restaurante (emoji)."""
+        """Retorna o status do restaurante em emoji."""
         return "✅" if self._ativo else "❎"
 
     @property
@@ -37,10 +37,10 @@ class Restaurante:
         return self._categoria
 
     @property
-    def media_avaliacoes(self) -> float:
-        """Retorna a média das avaliações do restaurante (1 casa decimal)."""
+    def media_avaliacoes(self) -> float | None:
+        """Retorna a média das avaliações do restaurante ou None se não houver avaliações."""
         if not self._avaliacoes:
-            return 0.0
+            return None
         soma = sum(avaliacao.nota for avaliacao in self._avaliacoes)
         return round(soma / len(self._avaliacoes), 1)
 
@@ -55,7 +55,8 @@ class Restaurante:
         print("-" * 75)
 
         for restaurante in cls.restaurantes:
-            media_str = f"{restaurante.media_avaliacoes:.1f}"
+            media = restaurante.media_avaliacoes  # acesso à propriedade
+            media_str = f"{media:.1f}" if isinstance(media, (int, float)) else "-"
             print(
                 f"{restaurante.nome.ljust(25)} | "
                 f"{restaurante.categoria.ljust(25)} | "
@@ -65,5 +66,7 @@ class Restaurante:
 
     def adicionar_avaliacao(self, cliente: str, nota: int):
         """Adiciona uma nova avaliação ao restaurante."""
+        if not isinstance(nota, (int, float)) or nota < 1 or nota > 5:
+            raise ValueError("A nota deve ser um número entre 1 e 5.")
         avaliacao = Avaliacao(cliente, nota)
         self._avaliacoes.append(avaliacao)

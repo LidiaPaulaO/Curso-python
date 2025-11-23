@@ -12,10 +12,10 @@ def main():
     restaurante1.alternar_status()
 
     # Adiciona avaliações
-    restaurante1.adicionar_avaliacao("Lidia", 10)
-    restaurante1.adicionar_avaliacao("Paula", 8)
-    restaurante2.adicionar_avaliacao("Carlos", 7)
-    restaurante3.adicionar_avaliacao("Fernanda", 9)
+    # restaurante1.adicionar_avaliacao("Lidia", 10)
+    # restaurante1.adicionar_avaliacao("Paula", 8)
+    # restaurante2.adicionar_avaliacao("Carlos", 7)
+    # restaurante3.adicionar_avaliacao("Fernanda", 9)
 
     # Lista todos os restaurantes
     Restaurante.listar_restaurantes()
